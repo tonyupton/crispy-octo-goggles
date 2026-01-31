@@ -1,0 +1,17 @@
+[package]
+name = "backend"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+# Use reqwest's async client with Rustls to avoid system OpenSSL deps
+# Enable the `json` feature for Response::json()
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+
+# Tokio runtime for async main and reqwest
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
+actix-web = "4.12.1"
